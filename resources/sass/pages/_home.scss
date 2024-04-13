@@ -1,0 +1,125 @@
+.home-trending {
+    color: #EF0051;
+    font-weight: 600;
+    line-height: 27px;
+}
+
+.live-container {
+    border-radius: 10px;
+    border: 2px solid #EF0051;
+    background: #171C2F;
+    /* padding: 25px; */
+    color: #FFFFFF;
+}
+
+.watch-button {
+    padding: 4px 14px;
+    border-radius: 6px;
+    background: #EF0051;
+    color: #FFFFFF;
+}
+
+.text-align-end {
+    text-align: end;
+}
+
+.live-right {
+    text-align: end;
+}
+
+.arrow-left {
+    display: block;
+    text-align: end;
+    position: relative;
+    left: 10px;
+    top: 90px;
+    z-index: 10;
+}
+
+.live-now {
+    padding: 24px;
+    border-radius: 10px;
+    background: #344156;
+}
+
+.btn-border-none {
+    border: none !important;
+}
+
+@include media-breakpoint-down(lg) {
+    .live-search {
+        margin-right: .5rem !important;
+    }
+
+    .live-search .mb-custom {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .live-now {
+        display: none !important;
+    }
+
+    .mb {
+        margin-bottom: 3rem;
+    }
+
+    .d-mb {
+        display: block !important;
+    }
+
+    .pr-0 {
+        padding-right: 0 !important;
+    }
+}
+
+@include media-breakpoint-down(xl) {
+    .pc {
+        display: none !important;
+    }
+}
+
+
+@include media-breakpoint-up(xl) {
+    .mb {
+        display: none !important;
+    }
+
+    .pc {
+        display: block !important;
+    }
+
+    .d-mb {
+        display: none !important;
+    }
+}
+
+.live-search .mb-custom {
+    margin-bottom: 3rem;
+}
+
+.module .nav-link {
+    padding: unset !important;
+}
+
+#search-input {
+    background: #E6E6E6;
+    color: #636363;
+    padding: 0.53125rem 2rem;
+    border-radius: 6px !important;
+}
+
+#icon-search {
+    position: absolute;
+    left: 50px;
+    top: 2px;
+
+    & button {
+        color: #333 !important;
+    }
+}
+
+@include media-breakpoint-down(xxl) {
+    .carousel-item .last {
+        display: none !important;
+    }
+}

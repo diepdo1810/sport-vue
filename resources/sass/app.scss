@@ -1,0 +1,23 @@
+// Variables
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import 'variables';
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+@import 'styles';
+@import 'fonts';
+@import 'text';
+@import 'common';
+@import 'master';
+@import 'pages/user/profile';
+@import 'pages/home';
+@import 'pages/leagues';
+@import 'pages/teams';
+@import 'pages/payment';
+

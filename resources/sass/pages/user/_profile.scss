@@ -1,0 +1,154 @@
+@media screen and (max-width: 1028px) {
+    .profile-header-container {
+        display: none;
+    }
+}
+
+.profile-header-container {
+    background-size: cover;
+}
+
+.profile-header-img {
+    background-size: cover;
+    width: 258px;
+    height: 258px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: absolute;
+    top: 240px;
+}
+
+.profile-header-info {
+    margin-left: 280px;
+    padding-top: 100px;
+    position: relative;
+    top: 150px;
+}
+
+.profile-header-info h2 {
+    margin: 0;
+}
+
+.profile-actions {
+    margin-top: 10px;
+}
+
+.profile-actions a {
+    color: $primary;
+    margin-right: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.profile-actions a:last-child {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 1028px) {
+    .profile-container {
+        margin-top: 50px !important;
+    }
+}
+
+.profile-container {
+    margin-top: 250px;
+    border: 1px solid $primary;
+    border-radius: 10px;
+}
+
+.transaction-history {
+    padding: 20px 0px 64px 24px;
+}
+
+.transaction-history h3 {
+    margin-top: 0;
+}
+
+.transaction-history p {
+    margin-bottom: 0;
+}
+
+.line-height-18 {
+    line-height: 18.75px;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #4E4E50;
+    padding: 10px 0px;
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-date,
+.transaction-amount,
+.transaction-method {
+    margin: 0;
+}
+
+.basic-info {
+    @include media-breakpoint-down(lg) {
+        padding: 24px 16px;
+    }
+
+    padding: 24px 32px;
+}
+
+.form-profile {
+    width: 100%;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    border: 1px solid $primary;
+    color: $primary !important;
+    border-radius: 8px;
+    width: 120px;
+}
+
+.btn-save {
+    border: none;
+    width: 120px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.input-password {
+    position: relative;
+
+    .show-hide-password {
+        font-size: 14px;
+        background: 0;
+        border: 0;
+        cursor: pointer;
+        min-width: 70px;
+        color: #FFFFFF99;
+        transform: translate(0%, -50%);
+        top: 50%;
+        right: 0;
+    }
+
+}
+
+.member-card {
+    @media screen and (min-width: 1028px) {
+        display: none !important;
+    }
+}
+
+.member-card .member-name {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+@include media-breakpoint-up(lg) {
+    .form-profile {
+        width: 60% !important;
+    }
+}

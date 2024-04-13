@@ -1,0 +1,159 @@
+.fs-12 {
+    font-size: 12px;
+}
+
+.fs-13 {
+    font-size: 13px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-18 {
+    font-size: 18px;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+.fs-22 {
+    font-size: 22px;
+}
+
+.fs-24 {
+    font-size: 24px;
+}
+
+.fs-28 {
+    font-size: 28px;
+}
+
+
+.fs-26 {
+    font-size: 26px;
+}
+
+.fs-32 {
+    font-size: 32px;
+}
+
+.fs-42 {
+    font-size: 42px;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+
+@include media-breakpoint-up(md) {
+    .md-fs-12 {
+        font-size: 12px !important;
+    }
+
+    .md-fs-13 {
+        font-size: 13px !important;
+    }
+
+    .md-fs-14 {
+        font-size: 14px !important;
+    }
+
+    .md-fs-16 {
+        font-size: 16px !important;
+    }
+
+    .md-fs-18 {
+        font-size: 18px !important;
+    }
+
+    .md-fs-20 {
+        font-size: 20px !important;
+    }
+
+    .md-fs-22 {
+        font-size: 22px !important;
+    }
+
+    .md-fs-24 {
+        font-size: 24px !important;
+    }
+
+    .md-fs-28 {
+        font-size: 28px !important;
+    }
+
+
+    .md-fs-26 {
+        font-size: 26px !important;
+    }
+
+    .md-fs-32 {
+        font-size: 32px !important;
+    }
+
+    .md-fs-42 {
+        font-size: 42px !important;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .lg-fs-12 {
+        font-size: 12px !important;
+    }
+
+    .lg-fs-13 {
+        font-size: 13px !important;
+    }
+
+    .lg-fs-14 {
+        font-size: 14px !important;
+    }
+
+    .lg-fs-16 {
+        font-size: 16px !important;
+    }
+
+    .lg-fs-18 {
+        font-size: 18px !important;
+    }
+
+    .lg-fs-20 {
+        font-size: 20px !important;
+    }
+
+    .md-fs-22 {
+        font-size: 22px !important;
+    }
+
+    .lg-fs-24 {
+        font-size: 24px !important;
+    }
+
+    .lg-fs-28 {
+        font-size: 28px !important;
+    }
+
+
+    .lg-fs-26 {
+        font-size: 26px !important;
+    }
+
+    .lg-fs-32 {
+        font-size: 32px !important;
+    }
+
+    .lg-fs-42 {
+        font-size: 42px !important;
+    }
+}

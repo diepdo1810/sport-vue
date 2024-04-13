@@ -1,0 +1,277 @@
+.leagues-soft {
+    button {
+        padding: 4px 16px;
+        border-radius: 50px;
+        color: #FFFFFF;
+        line-height: 21px;
+        font-weight: 400;
+    }
+
+    .focus {
+        background: #DD9222;
+    }
+
+    .not-focus {
+        background: #1B2536;
+    }
+}
+
+.table-top-score {
+    margin-bottom: 0;
+
+    thead {
+        th {
+            border: 0;
+        }
+    }
+
+    .thead-dark {
+        th {
+            background-color: #485365;
+            color: #FFFFFF;
+
+            &:first-child {
+                width: 40px !important;
+                display: block;
+                overflow: auto;
+            }
+
+            &:last-child {
+                width: 100px !important;
+                text-align: end !important;
+                display: block;
+                overflow: auto;
+            }
+        }
+    }
+
+    .body-dark {
+        th {
+            border-color: #32383e;
+            background-color: #344156;
+            color: #FFFFFF;
+        }
+
+        td {
+            color: #FFFFFF;
+            border-color: #485365;
+            white-space: nowrap !important;
+
+            &:last-child {
+                text-align: end !important;
+            }
+        }
+    }
+}
+
+.table-responsive-standings {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .table-standings {
+        thead {
+            th {
+                border: 0;
+
+                &:first-child {
+                    position: sticky;
+                    left: 0;
+                }
+
+                &:nth-child(2) {
+                    position: sticky;
+                    left: 40px;
+                }
+            }
+        }
+
+        .logo {
+            img {
+                width: 24px;
+                height: 24px;
+                object-fit: cover;
+            }
+        }
+
+        .thead-dark {
+            th {
+                background-color: #747C8A;
+                color: #FFFFFF;
+
+                &:first-child {
+                    width: 40px !important;
+                    text-align: center;
+                    display: block;
+                    overflow: auto;
+                }
+            }
+        }
+
+        .thead-custom {
+            tr {
+                .group {
+                    background-color: #313B4A !important;
+                    color: #FFFFFF;
+                    font-weight: 600;
+                    border: 0;
+                }
+
+                td {
+                    color: #ffffff !important;
+                    border-bottom: 1px solid #485365 !important;
+
+                    &:first-child {
+                        position: sticky;
+                        left: 0;
+                        z-index: 2;
+                    }
+
+                    &:nth-child(2) {
+                        position: sticky;
+                        left: 40px;
+                        background-color: #344156;
+                        width: 40px;
+                    }
+                }
+            }
+
+            .form-icons {
+                font-size: 14px;
+            }
+
+            .logo {
+                width: 24px;
+                height: 24px;
+                object-fit: scale-down;
+            }
+
+        }
+    }
+}
+
+
+.badge {
+    font-size: 0.75em;
+    padding: 0.375em 0.5625em;
+}
+
+.bg-blue {
+    background-color: #007bff;
+    color: white;
+}
+
+.bg-yellow {
+    background-color: #ffc107;
+    color: black;
+}
+
+.standings {
+    padding: 0 24px;
+}
+
+.bg-custom-id {
+    background: #747C8A !important;
+}
+
+.bg-group-fist-secconds {
+    background: #184682 !important;
+    text-align: center;
+}
+
+.bg-group-third {
+    background: #1EA8EC !important;
+    text-align: center;
+}
+
+.bg-group-fourth {
+    background: #475569 !important;
+    text-align: center;
+}
+
+.bg-team {
+    color: #FFFFFF !important;
+    line-height: 24px;
+    font-weight: 400;
+    white-space: nowrap;
+
+    img {
+        width: 24px;
+        height: 24px;
+        object-fit: scale-down;
+    }
+}
+
+.pd-souce {
+    width: 24px;
+    height: 24px;
+    border-radius: 10px;
+}
+
+.pd-souce-first {
+    background: #184682;
+}
+
+.pd-souce-secconds {
+    background: #1EA8EC;
+}
+
+.leagues-img {
+    background: #FFFFFF;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+
+    img {
+        object-fit: scale-down;
+        width: 44px !important;
+        height: 44px !important;
+    }
+}
+
+
+@include media-breakpoint-up(md) {
+    .table-top-score {
+        .thead-dark {
+            th {
+                &:first-child {
+                    display: table-cell !important;
+                }
+
+                &:last-child {
+                    display: table-cell !important;
+                }
+            }
+        }
+    }
+
+    .table-responsive-standings {
+        overflow: visible !important;
+
+        .table-standings {
+            .thead-dark {
+                th {
+                    &:first-child {
+                        display: table-cell !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .leagues-img {
+        padding: 16px !important;
+        width: 120px !important;
+        height: 120px !important;
+
+        img {
+            width: 88px !important;
+            height: 88px !important;
+        }
+    }
+}

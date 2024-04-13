@@ -1,0 +1,182 @@
+@include media-breakpoint-up(lg) {
+    .customNavigationContainer {
+        display: none;
+    }
+}
+
+.customNavigation {
+    margin-top: 5px;
+    margin-right: 11px;
+    text-align: right;
+}
+
+.customNavigation .btn {
+    position: relative;
+    display: inline-block;
+    overflow: visible;
+    margin: -1.9px;
+    padding: 0.8em 0.5em;
+    border: 0;
+    box-shadow: none;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: none;
+    font-size: 20px;
+    cursor: crosshair;
+    -webkit-transition: all .1s ease-in 0s;
+    -moz-transition: all .1s ease-in 0s;
+    -o-transition: all .1s ease-in 0s;
+    transition-property: all .1s ease-in 0s;
+    -webkit-font-smoothing: antialiased;
+}
+
+.customNavigation .btn:hover {
+    background: #222;
+}
+
+@media screen and (max-width: 720px) {
+    #slider-carousel .owl-item {
+        width: 62px !important;
+    }
+}
+
+.text-teams {
+    display: block;
+    text-align: left;
+    position: relative;
+    top: 40px;
+    font-weight: 600;
+    line-height: 19.36px;
+}
+
+.team {
+    color: #FFFFFF !important;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+@include media-breakpoint-down(lg) {
+    input[type="date"] {
+        padding: 4px 22px !important;
+    }
+}
+
+input[type="date"] {
+    position: relative;
+    padding: 7px 12px;
+    border-radius: 6px;
+    border: 1px solid #FFFFFF;
+    background: none;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: transparent;
+    background: none;
+    z-index: 1;
+}
+
+input[type="date"]:before {
+    color: transparent;
+    background: none;
+    display: block;
+    font-family: 'FontAwesome';
+    content: '\f073';
+    /* This is the calendar icon in FontAwesome */
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    color: #999;
+}
+
+.menu-custom .text-menu {
+    font-size: 14px;
+}
+
+/*the container must be positioned relative:*/
+.custom-select {
+    position: relative;
+    font-family: Arial;
+}
+
+.custom-select select {
+    display: none;
+    /*hide original SELECT element:*/
+}
+
+.select-selected {
+    background-color: none;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,
+.select-selected {
+    color: #ffffff;
+    padding: 7px 12px;
+    border: 1px solid #FFFFFF;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    border: 1px solid #FFFFFF;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/*style items (options):*/
+.select-items {
+    position: absolute;
+    background-color: #344156;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.owl-carousel.owl-drag .owl-item {
+    width: 62px !important;
+    height: 62px;
+    border: 1px solid #F6F6F6;
+    border-radius: 104px;
+    background: #F6F6F6;
+    margin-right: 1.5rem;
+}
+
+.post-img img {
+    object-fit: scale-down;
+}
