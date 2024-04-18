@@ -1,22 +1,22 @@
 .home-trending {
-    color: #EF0051;
+    color: #ef0051;
     font-weight: 600;
     line-height: 27px;
 }
 
 .live-container {
     border-radius: 10px;
-    border: 2px solid #EF0051;
-    background: #171C2F;
+    border: 2px solid #ef0051;
+    background: #171c2f;
     /* padding: 25px; */
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .watch-button {
     padding: 4px 14px;
     border-radius: 6px;
-    background: #EF0051;
-    color: #FFFFFF;
+    background: #ef0051;
+    color: #ffffff;
 }
 
 .text-align-end {
@@ -28,11 +28,11 @@
 }
 
 .arrow-left {
-    display: block;
-    text-align: end;
+    display: flex;
+    justify-content: end;
     position: relative;
-    left: 10px;
-    top: 90px;
+    right: 0;
+    top: 100px;
     z-index: 10;
 }
 
@@ -48,7 +48,7 @@
 
 @include media-breakpoint-down(lg) {
     .live-search {
-        margin-right: .5rem !important;
+        margin-right: 0.5rem !important;
     }
 
     .live-search .mb-custom {
@@ -78,7 +78,6 @@
     }
 }
 
-
 @include media-breakpoint-up(xl) {
     .mb {
         display: none !important;
@@ -102,7 +101,7 @@
 }
 
 #search-input {
-    background: #E6E6E6;
+    background: #e6e6e6;
     color: #636363;
     padding: 0.53125rem 2rem;
     border-radius: 6px !important;
