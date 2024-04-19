@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.app');
+Route::group(['prefix' => '/'], function () {
+    Route::get('/', function () {
+        return view('layouts.app');
+    })->name('home');
+
+    Route::get('/fixtures', function () {
+        return view('fixtures.index');
+    })->name('fixtures');
 });
