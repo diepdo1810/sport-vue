@@ -11,12 +11,9 @@ export default {
     components: {},
     data() {
         return {
-            selectedBody: 'base-high-light',
-            routes: [
-                '/',
-                '/fixtures',
-            ],
-        }
+            selectedBody: "base-high-light",
+            routes: ["/", "/fixtures", "/highlights"],
+        };
     },
     mounted() {
         this.showComponent();
@@ -26,12 +23,18 @@ export default {
             // get route path
             const path = window.location.pathname;
             // if path = route fixtures
-            if (this.routes.indexOf('/fixtures') !== -1 && path === '/fixtures') {
-                console.log('fixtures');
-                this.selectedBody = '';
+            if (
+                this.routes.indexOf("/fixtures") !== -1 &&
+                path === "/fixtures"
+            ) {
+                this.selectedBody = "base-fixture";
+            } else if (
+                this.routes.indexOf("/highlights") !== -1 &&
+                path === "/highlights"
+            ) {
+                this.selectedBody = "base-high-light-match";
             } else {
-                console.log('home');
-                this.selectedBody = 'base-high-light';
+                this.selectedBody = "base-high-light";
             }
         },
     },

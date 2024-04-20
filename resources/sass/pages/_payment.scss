@@ -11,17 +11,16 @@
     .card-body {
         .original-price {
             text-decoration: line-through;
-            color:
-                #ABBFC8;
+            color: #abbfc8;
         }
 
         .discount {
             font-weight: 600;
             font-size: 14px;
             border-radius: 50px;
-            border: 1px solid #DFB727;
+            border: 1px solid #dfb727;
             padding: 4px 16px;
-            color: #DFB727;
+            color: #dfb727;
         }
     }
 
@@ -31,14 +30,14 @@
 }
 
 .card-header {
-    background-color: #2C2C2E;
-    border-bottom: 1px solid #48484A;
+    background-color: #2c2c2e;
+    border-bottom: 1px solid #48484a;
     font-size: 1.2rem;
     font-weight: 700;
 }
 
 .heading {
-    color: #FFFFFF;
+    color: #ffffff;
     text-align: left;
     font-weight: 600;
     display: flex;
@@ -49,24 +48,22 @@
         width: 32px;
         height: 32px;
         border-radius: 50px;
-        color: #FFFFFF;
+        color: #ffffff;
         text-align: center;
         padding: 4px 0;
-        border: 1px solid #FFFFFF;
+        border: 1px solid #ffffff;
     }
-
 }
 
-
 .text-muted {
-    color: #DFB727 !important;
+    color: #dfb727 !important;
 }
 
 .btn-payment {
-    background-color: #EF0051;
+    background-color: #ef0051;
     border: none;
     border-radius: 10px;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 16px;
     font-weight: 500;
     padding: 10px 40px;
@@ -75,7 +72,7 @@
 }
 
 .text-promotion {
-    color: #DFB727;
+    color: #dfb727;
     font-weight: 500;
 }
 
@@ -91,20 +88,20 @@
 }
 
 .terms {
-    color: #FFFFFF;
+    color: #ffffff;
     text-align: center;
     font-weight: 400;
     padding: 16px 0px;
 }
 
 .sercure {
-    background: #172B22;
+    background: #172b22;
     border-radius: 10px;
     padding: 12px 8px;
 }
 
 .secure-text {
-    color: #5CB65F;
+    color: #5cb65f;
     font-weight: 500;
 }
 
@@ -151,25 +148,25 @@
         z-index: 1;
     }
 
-    .checkbox input[type="checkbox"]:focus+label::before,
-    .checkbox input[type="radio"]:focus+label::before {
+    .checkbox input[type="checkbox"]:focus + label::before,
+    .checkbox input[type="radio"]:focus + label::before {
         outline-offset: -2px;
         outline: none;
     }
 
-    .checkbox input[type="checkbox"]:checked+label::after,
-    .checkbox input[type="radio"]:checked+label::after {
+    .checkbox input[type="checkbox"]:checked + label::after,
+    .checkbox input[type="radio"]:checked + label::after {
         font-family: "FontAwesome";
         content: "\f00c";
     }
 
-    .checkbox input[type="checkbox"]:disabled+label,
-    .checkbox input[type="radio"]:disabled+label {
+    .checkbox input[type="checkbox"]:disabled + label,
+    .checkbox input[type="radio"]:disabled + label {
         opacity: 0.65;
     }
 
-    .checkbox input[type="checkbox"]:disabled+label::before,
-    .checkbox input[type="radio"]:disabled+label::before {
+    .checkbox input[type="checkbox"]:disabled + label::before,
+    .checkbox input[type="radio"]:disabled + label::before {
         background-color: #eeeeee;
         cursor: not-allowed;
     }
@@ -182,61 +179,60 @@
         margin-top: 0;
     }
 
-    .checkbox-primary input[type="checkbox"]:checked+label::before,
-    .checkbox-primary input[type="radio"]:checked+label::before {
+    .checkbox-primary input[type="checkbox"]:checked + label::before,
+    .checkbox-primary input[type="radio"]:checked + label::before {
         background-color: #337ab7;
         border-color: #337ab7;
     }
 
-    .checkbox-primary input[type="checkbox"]:checked+label::after,
-    .checkbox-primary input[type="radio"]:checked+label::after {
+    .checkbox-primary input[type="checkbox"]:checked + label::after,
+    .checkbox-primary input[type="radio"]:checked + label::after {
         color: #fff;
     }
 
-    .checkbox-danger input[type="checkbox"]:checked+label::before,
-    .checkbox-danger input[type="radio"]:checked+label::before {
-        background-color: #EF0051;
-        border-color: #EF0051;
+    .checkbox-danger input[type="checkbox"]:checked + label::before,
+    .checkbox-danger input[type="radio"]:checked + label::before {
+        background-color: #ef0051;
+        border-color: #ef0051;
     }
 
-    .checkbox-danger input[type="checkbox"]:checked+label::after,
-    .checkbox-danger input[type="radio"]:checked+label::after {
+    .checkbox-danger input[type="checkbox"]:checked + label::after,
+    .checkbox-danger input[type="radio"]:checked + label::after {
         color: #fff;
     }
 
-    .checkbox-info input[type="checkbox"]:checked+label::before,
-    .checkbox-info input[type="radio"]:checked+label::before {
+    .checkbox-info input[type="checkbox"]:checked + label::before,
+    .checkbox-info input[type="radio"]:checked + label::before {
         background-color: #5bc0de;
         border-color: #5bc0de;
     }
 
-    .checkbox-info input[type="checkbox"]:checked+label::after,
-    .checkbox-info input[type="radio"]:checked+label::after {
+    .checkbox-info input[type="checkbox"]:checked + label::after,
+    .checkbox-info input[type="radio"]:checked + label::after {
         color: #fff;
     }
 
-    .checkbox-warning input[type="checkbox"]:checked+label::before,
-    .checkbox-warning input[type="radio"]:checked+label::before {
+    .checkbox-warning input[type="checkbox"]:checked + label::before,
+    .checkbox-warning input[type="radio"]:checked + label::before {
         background-color: #f0ad4e;
         border-color: #f0ad4e;
     }
 
-    .checkbox-warning input[type="checkbox"]:checked+label::after,
-    .checkbox-warning input[type="radio"]:checked+label::after {
+    .checkbox-warning input[type="checkbox"]:checked + label::after,
+    .checkbox-warning input[type="radio"]:checked + label::after {
         color: #fff;
     }
 
-    .checkbox-success input[type="checkbox"]:checked+label::before,
-    .checkbox-success input[type="radio"]:checked+label::before {
+    .checkbox-success input[type="checkbox"]:checked + label::before,
+    .checkbox-success input[type="radio"]:checked + label::before {
         background-color: #5cb85c;
         border-color: #5cb85c;
     }
 
-    .checkbox-success input[type="checkbox"]:checked+label::after,
-    .checkbox-success input[type="radio"]:checked+label::after {
+    .checkbox-success input[type="checkbox"]:checked + label::after,
+    .checkbox-success input[type="radio"]:checked + label::after {
         color: #fff;
     }
-
 
     .radio {
         padding-left: 20px;
@@ -280,7 +276,8 @@
         -ms-transform: scale(0, 0);
         -o-transform: scale(0, 0);
         transform: scale(0, 0);
-        -webkit-transition: -webkit-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+        -webkit-transition: -webkit-transform 0.1s
+            cubic-bezier(0.8, -0.33, 0.2, 1.33);
         -moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
         -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
         transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
@@ -291,24 +288,24 @@
         z-index: 1;
     }
 
-    .radio input[type="radio"]:focus+label::before {
+    .radio input[type="radio"]:focus + label::before {
         outline: thin dotted;
         outline: 5px auto -webkit-focus-ring-color;
         outline-offset: -2px;
     }
 
-    .radio input[type="radio"]:checked+label::after {
+    .radio input[type="radio"]:checked + label::after {
         -webkit-transform: scale(1, 1);
         -ms-transform: scale(1, 1);
         -o-transform: scale(1, 1);
         transform: scale(1, 1);
     }
 
-    .radio input[type="radio"]:disabled+label {
+    .radio input[type="radio"]:disabled + label {
         opacity: 0.65;
     }
 
-    .radio input[type="radio"]:disabled+label::before {
+    .radio input[type="radio"]:disabled + label::before {
         cursor: not-allowed;
     }
 
@@ -316,79 +313,79 @@
         margin-top: 0;
     }
 
-    .radio-primary input[type="radio"]+label::after {
+    .radio-primary input[type="radio"] + label::after {
         background-color: #337ab7;
     }
 
-    .radio-primary input[type="radio"]:checked+label::before {
+    .radio-primary input[type="radio"]:checked + label::before {
         border-color: #337ab7;
     }
 
-    .radio-primary input[type="radio"]:checked+label::after {
+    .radio-primary input[type="radio"]:checked + label::after {
         background-color: #337ab7;
     }
 
-    .radio-danger input[type="radio"]+label::after {
+    .radio-danger input[type="radio"] + label::after {
         background-color: #d9534f;
     }
 
-    .radio-danger input[type="radio"]:checked+label::before {
+    .radio-danger input[type="radio"]:checked + label::before {
         border-color: #d9534f;
     }
 
-    .radio-danger input[type="radio"]:checked+label::after {
+    .radio-danger input[type="radio"]:checked + label::after {
         background-color: #d9534f;
     }
 
-    .radio-info input[type="radio"]+label::after {
+    .radio-info input[type="radio"] + label::after {
         background-color: #5bc0de;
     }
 
-    .radio-info input[type="radio"]:checked+label::before {
+    .radio-info input[type="radio"]:checked + label::before {
         border-color: #5bc0de;
     }
 
-    .radio-info input[type="radio"]:checked+label::after {
+    .radio-info input[type="radio"]:checked + label::after {
         background-color: #5bc0de;
     }
 
-    .radio-warning input[type="radio"]+label::after {
+    .radio-warning input[type="radio"] + label::after {
         background-color: #f0ad4e;
     }
 
-    .radio-warning input[type="radio"]:checked+label::before {
+    .radio-warning input[type="radio"]:checked + label::before {
         border-color: #f0ad4e;
     }
 
-    .radio-warning input[type="radio"]:checked+label::after {
+    .radio-warning input[type="radio"]:checked + label::after {
         background-color: #f0ad4e;
     }
 
-    .radio-success input[type="radio"]+label::after {
+    .radio-success input[type="radio"] + label::after {
         background-color: #5cb85c;
     }
 
-    .radio-success input[type="radio"]:checked+label::before {
+    .radio-success input[type="radio"]:checked + label::before {
         border-color: #5cb85c;
     }
 
-    .radio-success input[type="radio"]:checked+label::after {
+    .radio-success input[type="radio"]:checked + label::after {
         background-color: #5cb85c;
     }
 
-    input[type="checkbox"].styled:checked+label:after,
-    input[type="radio"].styled:checked+label:after {
-        font-family: 'FontAwesome';
+    input[type="checkbox"].styled:checked + label:after,
+    input[type="radio"].styled:checked + label:after {
+        font-family: "FontAwesome";
         content: "\f00c";
     }
 
-    input[type="checkbox"] .styled:checked+label::before,
-    input[type="radio"] .styled:checked+label::before {
+    input[type="checkbox"] .styled:checked + label::before,
+    input[type="radio"] .styled:checked + label::before {
         color: #fff;
     }
 
-    input[type="checkbox"] .styled:checked+label::after,
-    input[type="radio"] .styled:checked+label::after {
+    input[type="checkbox"] .styled:checked + label::after,
+    input[type="radio"] .styled:checked + label::after {
         color: #fff;
     }
 
@@ -454,7 +451,7 @@
 }
 
 .chosse-payment {
-    border: 1px solid #EF0051;
+    border: 1px solid #ef0051;
     background: unset !important;
 }
 
@@ -474,8 +471,17 @@
     padding: 10px 16px;
 }
 
+.images {
+    display: flex;
+
+    & img {
+        width: 100%;
+        margin-right: 10px;
+    }
+}
+
 .payment-hr {
-    border-bottom: 1px solid #8091AC;
+    border-bottom: 1px solid #8091ac;
     padding: 0px 0px 8px 0px;
 }
 
@@ -509,7 +515,7 @@
     }
 
     .terms {
-        color: #FFFFFF;
+        color: #ffffff;
         text-align: center;
         font-weight: 600;
         padding: 16px 40px;
@@ -551,7 +557,7 @@
 
 .vip-benefits-menu li:nth-child(1),
 .vip-benefits-menu li:nth-child(2) {
-    color: #DFB727;
+    color: #dfb727;
 }
 
 .text-card-input {
@@ -563,11 +569,11 @@
 }
 
 .border-bottom-currency {
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid #ffffff;
 }
 
 .select-currency-text {
-    color: #EF0051;
+    color: #ef0051;
     font-weight: 400;
     line-height: 24px;
     font-size: 14px;
@@ -601,11 +607,11 @@
 
 .voucher-apply {
     border-radius: 6px !important;
-    background: #EF0051;
-    border: 1px solid #EF0051;
+    background: #ef0051;
+    border: 1px solid #ef0051;
     padding: 4px 16px;
     height: 30px;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
@@ -614,28 +620,26 @@
 }
 
 .terms-link {
-    color: #EF0051;
+    color: #ef0051;
     text-decoration: none;
     font-weight: 600;
 }
 
-
 .select-currency {
-    background-color: #1E1E2D;
+    background-color: #1e1e2d;
     border: none;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .dropdown-toggle::after {
-    color: #EF0051;
-    content: url('assets/images/icon/arrow-down.png');
+    color: #ef0051;
+    content: url("assets/images/icon/arrow-down.png");
     border-top: unset;
 }
 
 .form-currency {
     bottom: 10px;
 }
-
 
 @include media-breakpoint-up(lg) {
     .card-12 {
@@ -644,7 +648,7 @@
     }
 
     .space-step-pc {
-        border: 1px solid #8091AC;
+        border: 1px solid #8091ac;
     }
 
     .vip-benefits {
@@ -701,11 +705,10 @@
     }
 }
 
-
 ///Thanks
 .thank-you-section {
     text-align: center;
-    color: #FFD700;
+    color: #ffd700;
     font-size: 96px;
     font-weight: 600;
     margin-bottom: 30px;
@@ -717,11 +720,10 @@
 }
 
 .tick {
-    color: #8CD334;
+    color: #8cd334;
     font-weight: 600;
     justify-content: center;
 }
-
 
 @include media-breakpoint-down(lg) {
     .img-illustration-pc {
@@ -767,8 +769,7 @@
 }
 
 .details-section p {
-    font-size:
-        18px;
+    font-size: 18px;
     line-height: 1.5;
     margin-bottom: 30px;
 }
@@ -792,16 +793,16 @@
 
 .price-details-hr {
     width: 30%;
-    border: 0.5px solid #EF0051;
+    border: 0.5px solid #ef0051;
 }
 
 .price-total {
-    color: #00E540;
+    color: #00e540;
 }
 
 .view-receipt {
     border-radius: 8px;
-    background: #EF0051;
+    background: #ef0051;
 }
 
 @include media-breakpoint-up(lg) {
@@ -825,5 +826,4 @@
     .tick {
         justify-content: start !important;
     }
-
 }
