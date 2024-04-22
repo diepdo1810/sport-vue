@@ -7,7 +7,7 @@ use \Illuminate\Http\JsonResponse;
 
 class ApiController extends Controller
 {
-    protected $apiVersion;
+    protected $apiHost;
     protected $apiKey;
 
     /**
@@ -15,7 +15,7 @@ class ApiController extends Controller
      */
     public function __construct()
     {
-        $this->apiVersion = API_VERSION;
+        $this->apiHost = API_HOST;
         $this->apiKey = API_KEY;
     }
 
@@ -35,5 +35,18 @@ class ApiController extends Controller
             'message' => $message,
             'status' => $status
         ]);
+    }
+
+    /**
+     * Set headers for the API request
+     *
+     * @return array
+     */
+    public function setHeaders(): array
+    {
+        return [
+            key => $this->apiKey,
+            host => $this->apiHost
+        ];
     }
 }

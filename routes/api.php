@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\TimezoneController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('timezones', 'Api\TimezoneController@index');
+Route::get('timezones', [TimezoneController::class, 'index'])->name('timezones.index');
