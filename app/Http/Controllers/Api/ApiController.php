@@ -7,16 +7,18 @@ use \Illuminate\Http\JsonResponse;
 
 class ApiController extends Controller
 {
-    protected $apiHost;
-    protected $apiKey;
+    protected $apiUrl = '';
+    protected $apiHost = '';
+    protected $apiKey = '';
 
     /**
      * ApiController constructor.
      */
-    public function __construct()
+    public function __construct($apiUrl = '', $apiHost = '', $apiKey = '')
     {
-        $this->apiHost = API_HOST;
-        $this->apiKey = API_KEY;
+        $this->apiUrl = $apiUrl ?? API_URL;
+        $this->apiHost = $apiHost ?? API_HOST;
+        $this->apiKey = $apiKey ?? API_KEY;
     }
 
     /*

@@ -66,7 +66,7 @@ class TimezoneController extends ApiController
     public function index(): JsonResponse
     {
         try {
-            $response = Http::withHeaders($this->setHeaders())->get($this->apiHost.'/v3/timezone');
+            $response = Http::withHeaders($this->setHeaders())->get($this->apiUrl.'/v3/timezone');
             $data = $response->json();
             return $this->buildResponseData($data, 'Timezone data retrieved successfully', 200);
         } catch (\Exception $e) {
