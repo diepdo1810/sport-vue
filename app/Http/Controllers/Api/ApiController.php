@@ -14,11 +14,11 @@ class ApiController extends Controller
     /**
      * ApiController constructor.
      */
-    public function __construct($apiUrl = '', $apiHost = '', $apiKey = '')
+    public function __construct()
     {
-        $this->apiUrl = $apiUrl ?? API_URL;
-        $this->apiHost = $apiHost ?? API_HOST;
-        $this->apiKey = $apiKey ?? API_KEY;
+        $this->apiUrl = API_URL;
+        $this->apiHost = API_HOST;
+        $this->apiKey = API_KEY;
     }
 
     /*

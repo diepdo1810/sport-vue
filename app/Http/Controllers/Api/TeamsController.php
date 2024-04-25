@@ -2,32 +2,32 @@
 
 namespace App\Http\Controllers\Api;
 
-use \Illuminate\Http\JsonResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
 use OpenApi\Annotations as OA;
 
-class TimezoneController extends ApiController
+class TeamsController extends ApiController
 {
     /**
      * @OA\Get(
-     *     path="/api/timezones",
-     *     operationId="getIndex",
-     *     tags={"Timezone"},
-     *     summary="Lấy dữ liệu múi giờ",
-     *     description="Lấy dữ liệu múi giờ từ API thứ ba",
+     *     path="/seasons",
+     *     operationId="getSeasons",
+     *     tags={"Season Management"},
+     *     summary="Lấy thông tin về các mùa giải",
+     *     description="Truy vấn thông tin về các mùa giải của giải đấu bóng đá",
      *     @OA\Response(
      *         response=200,
-     *         description="Dữ liệu múi giờ đã được lấy thành công",
+     *         description="Dữ liệu mùa giải đã được lấy thành công",
      *         @OA\JsonContent(
      *             @OA\Property(
      *                 property="data",
      *                 type="object",
-     *                 description="Dữ liệu múi giờ"
+     *                 description="Dữ liệu mùa giải"
      *             ),
      *             @OA\Property(
      *                 property="message",
      *                 type="string",
-     *                 example="Timezone data retrieved successfully",
+     *                 example="Seasons data retrieved successfully",
      *                 description="Thông điệp trả về"
      *             ),
      *             @OA\Property(
@@ -63,20 +63,18 @@ class TimezoneController extends ApiController
      *     )
      * )
      */
-    public function index(): JsonResponse
+    public function seasons(): JsonResponse
     {
         try {
-            $response = Http::withHeaders($this->setHeaders())->get($this->apiUrl.'/v3/timezone');
-            $data = $response->json();
-            $timezone = config('app.timezone');
-            // get timezone data in the response
-            $timezoneData = array_filter($data['response'], function ($item) use ($timezone) {
-                return $item === $timezone;
-            });
+            $response = Http::withHeaders($this->setHeaders())
+                ->get($this->apiUrl . '/teams', [
+                    'league' => ENGLAND_PREMIER_LEAGUE,
+                    'season' => SEASON
+                ]);
 
-            return $this->buildResponseData($timezoneData, 'Timezone data retrieved successfully', 200);
+            return $this->buildResponseData($response->json(), 'Seasons data retrieved successfully', 200);
         } catch (\Exception $e) {
-            return $this->buildResponseData(null, $e->getMessage(), 500);
+            return $this->buildResponseData(null, 'Internal Server Error', 500);
         }
     }
 }

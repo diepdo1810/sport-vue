@@ -5,6 +5,70 @@
         "version": "0.1"
     },
     "paths": {
+        "/seasons": {
+            "get": {
+                "tags": [
+                    "Season Management"
+                ],
+                "summary": "Lấy thông tin về các mùa giải",
+                "description": "Truy vấn thông tin về các mùa giải của giải đấu bóng đá",
+                "operationId": "getSeasons",
+                "responses": {
+                    "200": {
+                        "description": "Dữ liệu mùa giải đã được lấy thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "description": "Dữ liệu mùa giải",
+                                            "type": "object"
+                                        },
+                                        "message": {
+                                            "description": "Thông điệp trả về",
+                                            "type": "string",
+                                            "example": "Seasons data retrieved successfully"
+                                        },
+                                        "status": {
+                                            "description": "Mã trạng thái HTTP",
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Lỗi nội bộ máy chủ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "description": "Dữ liệu rỗng",
+                                            "type": "null"
+                                        },
+                                        "message": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string",
+                                            "example": "Internal Server Error"
+                                        },
+                                        "status": {
+                                            "description": "Mã trạng thái HTTP",
+                                            "type": "integer",
+                                            "example": 500
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/timezones": {
             "get": {
                 "tags": [

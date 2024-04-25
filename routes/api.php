@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\TeamsController;
 use App\Http\Controllers\Api\TimezoneController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('timezones', [TimezoneController::class, 'index'])->name('timezones.index');
+Route::group(['prefix' => 'v1'], function () {
+    Route::get('timezones', [TimezoneController::class, 'index'])->name('timezones.index');
+    Route::group(['prefix' => 'teams'], function () {
+       Route::get('/seasons', [TeamsController::class, 'seasons'])->name('teams.seasons');
+    });
+});
