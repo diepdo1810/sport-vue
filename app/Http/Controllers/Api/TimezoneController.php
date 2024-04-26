@@ -10,7 +10,7 @@ class TimezoneController extends ApiController
 {
     /**
      * @OA\Get(
-     *     path="/api/timezones",
+     *     path="/api/v1/timezones",
      *     operationId="getIndex",
      *     tags={"Timezone"},
      *     summary="Lấy dữ liệu múi giờ",
@@ -66,7 +66,7 @@ class TimezoneController extends ApiController
     public function index(): JsonResponse
     {
         try {
-            $response = Http::withHeaders($this->setHeaders())->get($this->apiUrl.'/v3/timezone');
+            $response = Http::withHeaders($this->setHeaders())->get($this->apiUrl.'/timezone');
             $data = $response->json();
             $timezone = config('app.timezone');
             // get timezone data in the response

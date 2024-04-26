@@ -5,10 +5,10 @@
         "version": "0.1"
     },
     "paths": {
-        "/seasons": {
+        "/api/v1/teams/information": {
             "get": {
                 "tags": [
-                    "Season Management"
+                    "Teams"
                 ],
                 "summary": "Lấy thông tin về các mùa giải",
                 "description": "Truy vấn thông tin về các mùa giải của giải đấu bóng đá",
@@ -69,7 +69,91 @@
                 }
             }
         },
-        "/api/timezones": {
+        "/api/v1/teams/statistics": {
+            "post": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Lấy thống kê về một đội bóng",
+                "description": "Truy vấn thông tin thống kê về một đội bóng trong một mùa giải cụ thể",
+                "operationId": "getStatistics",
+                "parameters": [
+                    {
+                        "name": "team",
+                        "in": "query",
+                        "description": "ID của đội bóng",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "Ngày thống kê",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dữ liệu thống kê đã được lấy thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "description": "Dữ liệu thống kê",
+                                            "type": "object"
+                                        },
+                                        "message": {
+                                            "description": "Thông điệp trả về",
+                                            "type": "string",
+                                            "example": "Statistics data retrieved successfully"
+                                        },
+                                        "status": {
+                                            "description": "Mã trạng thái HTTP",
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Lỗi nội bộ máy chủ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string",
+                                            "example": "Internal Server Error"
+                                        },
+                                        "status": {
+                                            "description": "Mã trạng thái HTTP",
+                                            "type": "integer",
+                                            "example": 500
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/timezones": {
             "get": {
                 "tags": [
                     "Timezone"

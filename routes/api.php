@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function () {
     Route::get('timezones', [TimezoneController::class, 'index'])->name('timezones.index');
     Route::group(['prefix' => 'teams'], function () {
-       Route::get('/seasons', [TeamsController::class, 'seasons'])->name('teams.seasons');
+       Route::get('/information', [TeamsController::class, 'information'])->name('teams.information');
+       Route::post('/statistics', [TeamsController::class, 'statistics'])->name('teams.statistics');
     });
 });
