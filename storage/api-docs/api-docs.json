@@ -12,7 +12,7 @@
                 ],
                 "summary": "Lấy thông tin về các mùa giải",
                 "description": "Truy vấn thông tin về các mùa giải của giải đấu bóng đá",
-                "operationId": "getSeasons",
+                "operationId": "getInformation",
                 "responses": {
                     "200": {
                         "description": "Dữ liệu mùa giải đã được lấy thành công",
@@ -74,49 +74,52 @@
                 "tags": [
                     "Teams"
                 ],
-                "summary": "Lấy thống kê về một đội bóng",
-                "description": "Truy vấn thông tin thống kê về một đội bóng trong một mùa giải cụ thể",
+                "summary": "Lấy thông tin thống kê về một đội bóng",
+                "description": "Endpoint này được sử dụng để lấy thông tin thống kê về một đội bóng dựa trên các tham số như đội bóng, ngày và mùa giải.",
                 "operationId": "getStatistics",
-                "parameters": [
-                    {
-                        "name": "team",
-                        "in": "query",
-                        "description": "ID của đội bóng",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "date",
-                        "in": "query",
-                        "description": "Ngày thống kê",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
+                "requestBody": {
+                    "description": "Dữ liệu đầu vào",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "team",
+                                    "date"
+                                ],
+                                "properties": {
+                                    "team": {
+                                        "description": "Tên của đội bóng.",
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "description": "Ngày cần thống kê. Định dạng chuỗi: 'YYYY-MM-DD'.",
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
                         }
                     }
-                ],
+                },
                 "responses": {
                     "200": {
-                        "description": "Dữ liệu thống kê đã được lấy thành công",
+                        "description": "Dữ liệu thống kê đã được truy vấn thành công",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "data": {
-                                            "description": "Dữ liệu thống kê",
-                                            "type": "object"
+                                        "statistics": {
+                                            "description": "Danh sách thông tin thống kê",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
                                         },
-                                        "message": {
-                                            "description": "Thông điệp trả về",
-                                            "type": "string",
-                                            "example": "Statistics data retrieved successfully"
-                                        },
-                                        "status": {
-                                            "description": "Mã trạng thái HTTP",
-                                            "type": "integer",
-                                            "example": 200
+                                        "count": {
+                                            "description": "Số lượng kết quả thống kê trả về",
+                                            "type": "integer"
                                         }
                                     },
                                     "type": "object"
@@ -125,24 +128,136 @@
                         }
                     },
                     "500": {
-                        "description": "Lỗi nội bộ máy chủ",
+                        "description": "Lỗi nội bộ của máy chủ",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "data": {
-                                            "description": "Thông điệp lỗi",
-                                            "type": "string"
-                                        },
                                         "message": {
                                             "description": "Thông điệp lỗi",
-                                            "type": "string",
-                                            "example": "Internal Server Error"
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/teams/seasons": {
+            "post": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Lấy thông tin về các mùa giải của một đội bóng",
+                "description": "Endpoint này được sử dụng để lấy thông tin về các mùa giải của một đội bóng dựa trên đội bóng được cung cấp.",
+                "operationId": "getSeasons",
+                "requestBody": {
+                    "description": "Dữ liệu đầu vào",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "team"
+                                ],
+                                "properties": {
+                                    "team": {
+                                        "description": "Tên của đội bóng.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Dữ liệu mùa giải đã được truy vấn thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "seasons": {
+                                            "description": "Danh sách các mùa giải",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
                                         },
-                                        "status": {
-                                            "description": "Mã trạng thái HTTP",
-                                            "type": "integer",
-                                            "example": 500
+                                        "count": {
+                                            "description": "Số lượng mùa giải trả về",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Lỗi nội bộ của máy chủ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/teams/countries": {
+            "get": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Lấy thông tin về các quốc gia",
+                "description": "Endpoint này được sử dụng để lấy thông tin về các quốc gia mà các đội bóng thuộc về.",
+                "operationId": "getCountries",
+                "responses": {
+                    "200": {
+                        "description": "Dữ liệu quốc gia đã được truy vấn thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "countries": {
+                                            "description": "Danh sách các quốc gia",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "count": {
+                                            "description": "Số lượng quốc gia trả về",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Lỗi nội bộ của máy chủ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string"
                                         }
                                     },
                                     "type": "object"

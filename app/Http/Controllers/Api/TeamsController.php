@@ -13,7 +13,7 @@ class TeamsController extends ApiController
     /**
      * @OA\Get(
      *     path="/api/v1/teams/information",
-     *     operationId="getSeasons",
+     *     operationId="getInformation",
      *     tags={"Teams"},
      *     summary="Lấy thông tin về các mùa giải",
      *     description="Truy vấn thông tin về các mùa giải của giải đấu bóng đá",
@@ -90,66 +90,30 @@ class TeamsController extends ApiController
      *     path="/api/v1/teams/statistics",
      *     operationId="getStatistics",
      *     tags={"Teams"},
-     *     summary="Lấy thống kê về một đội bóng",
-     *     description="Truy vấn thông tin thống kê về một đội bóng trong một mùa giải cụ thể",
-     *     @OA\Parameter(
-     *         name="team",
-     *         in="query",
+     *     summary="Lấy thông tin thống kê về một đội bóng",
+     *     description="Endpoint này được sử dụng để lấy thông tin thống kê về một đội bóng dựa trên các tham số như đội bóng, ngày và mùa giải.",
+     *     @OA\RequestBody(
      *         required=false,
-     *         description="ID của đội bóng",
-     *         @OA\Schema(type="string")
+     *         description="Dữ liệu đầu vào",
+     *         @OA\JsonContent(
+     *             required={"team", "date"},
+     *             @OA\Property(property="team", type="string", description="Tên của đội bóng."),
+     *             @OA\Property(property="date", type="string", format="date", description="Ngày cần thống kê. Định dạng chuỗi: 'YYYY-MM-DD'.")
+     *         )
      *     ),
-     *     @OA\Parameter(
-     *          name="date",
-     *          in="query",
-     *          required=false,
-     *          description="Ngày thống kê",
-     *          @OA\Schema(type="string")
-     *      ),
      *     @OA\Response(
      *         response=200,
-     *         description="Dữ liệu thống kê đã được lấy thành công",
+     *         description="Dữ liệu thống kê đã được truy vấn thành công",
      *         @OA\JsonContent(
-     *             @OA\Property(
-     *                 property="data",
-     *                 type="object",
-     *                 description="Dữ liệu thống kê"
-     *             ),
-     *             @OA\Property(
-     *                 property="message",
-     *                 type="string",
-     *                 example="Statistics data retrieved successfully",
-     *                 description="Thông điệp trả về"
-     *             ),
-     *             @OA\Property(
-     *                 property="status",
-     *                 type="integer",
-     *                 example=200,
-     *                 description="Mã trạng thái HTTP"
-     *             )
+     *             @OA\Property(property="statistics", type="array", description="Danh sách thông tin thống kê", @OA\Items(type="string")),
+     *             @OA\Property(property="count", type="integer", description="Số lượng kết quả thống kê trả về")
      *         )
      *     ),
      *     @OA\Response(
      *         response=500,
-     *         description="Lỗi nội bộ máy chủ",
+     *         description="Lỗi nội bộ của máy chủ",
      *         @OA\JsonContent(
-     *             @OA\Property(
-     *                 property="data",
-     *                 type="string",
-     *                 description="Thông điệp lỗi"
-     *             ),
-     *             @OA\Property(
-     *                 property="message",
-     *                 type="string",
-     *                 example="Internal Server Error",
-     *                 description="Thông điệp lỗi"
-     *             ),
-     *             @OA\Property(
-     *                 property="status",
-     *                 type="integer",
-     *                 example=500,
-     *                 description="Mã trạng thái HTTP"
-     *             )
+     *             @OA\Property(property="message", type="string", description="Thông điệp lỗi")
      *         )
      *     )
      * )
@@ -176,6 +140,107 @@ class TeamsController extends ApiController
                 'count' => $data['results']
             ];
             return $this->buildResponseData($result, 'Statistics data retrieved successfully', 200);
+        } catch (\Exception $e) {
+            return $this->buildResponseData($e->getMessage(), 'Internal Server Error', 500);
+        }
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/api/v1/teams/seasons",
+     *     operationId="getSeasons",
+     *     tags={"Teams"},
+     *     summary="Lấy thông tin về các mùa giải của một đội bóng",
+     *     description="Endpoint này được sử dụng để lấy thông tin về các mùa giải của một đội bóng dựa trên đội bóng được cung cấp.",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Dữ liệu đầu vào",
+     *         @OA\JsonContent(
+     *             required={"team"},
+     *             @OA\Property(property="team", type="string", description="Tên của đội bóng.")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Dữ liệu mùa giải đã được truy vấn thành công",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="seasons", type="array", description="Danh sách các mùa giải", @OA\Items(type="string")),
+     *             @OA\Property(property="count", type="integer", description="Số lượng mùa giải trả về")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Lỗi nội bộ của máy chủ",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", description="Thông điệp lỗi")
+     *         )
+     *     )
+     * )
+     */
+    public function seasons(Request $request)
+    {
+        $validateData = $request->validate([
+            'team' => 'required',
+        ]);
+
+        $params = [
+            'team' => $validateData['team'],
+        ];
+
+        try {
+            $response = Http::withHeaders($this->setHeaders())
+                ->get($this->apiUrl . '/teams/seasons', $params);
+            $data = $response->json();
+            $resu = $data['results'];
+            $resp = $data['response'];
+            $result = [
+                'seasons' => $resp[$resu - 1],
+                'count' => $resu
+            ];
+            return $this->buildResponseData($result, 'Seasons data retrieved successfully', 200);
+        } catch (\Exception $e) {
+            return $this->buildResponseData($e->getMessage(), 'Internal Server Error', 500);
+        }
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/api/v1/teams/countries",
+     *     operationId="getCountries",
+     *     tags={"Teams"},
+     *     summary="Lấy thông tin về các quốc gia",
+     *     description="Endpoint này được sử dụng để lấy thông tin về các quốc gia mà các đội bóng thuộc về.",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Dữ liệu quốc gia đã được truy vấn thành công",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="countries", type="array", description="Danh sách các quốc gia", @OA\Items(type="string")),
+     *             @OA\Property(property="count", type="integer", description="Số lượng quốc gia trả về")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Lỗi nội bộ của máy chủ",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", description="Thông điệp lỗi")
+     *         )
+     *     )
+     * )
+     */
+    public function countries()
+    {
+        try {
+            $response = Http::withHeaders($this->setHeaders())
+                ->get($this->apiUrl . '/teams/countries');
+            $data = $response->json();
+            $resp = $data['response'];
+            // find in array $resp get key of 'code' => 'GB'
+            $key = array_search(ENGLAND_CODE, array_column($resp, 'code'));
+            $result = [
+                'countries' => $resp[$key],
+                'count' => $data['results']
+            ];
+            return $this->buildResponseData($result, 'Countries data retrieved successfully', 200);
         } catch (\Exception $e) {
             return $this->buildResponseData($e->getMessage(), 'Internal Server Error', 500);
         }

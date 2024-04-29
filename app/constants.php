@@ -10,6 +10,7 @@ defined('host') or define('host', 'X-RapidAPI-Host');
 
 // config league
 defined('ENGLAND_PREMIER_LEAGUE') or define('ENGLAND_PREMIER_LEAGUE', '39');
+defined('ENGLAND_CODE') or define('ENGLAND_CODE', 'GB');
 defined('SPAIN_LA_LIGA') or define('SPAIN_LA_LIGA', '140');
 defined('ITALY_SERIE_A') or define('ITALY_SERIE_A', '135');
 defined('SEASON') or define('SEASON', '2023');
