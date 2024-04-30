@@ -5,6 +5,642 @@
         "version": "0.1"
     },
     "paths": {
+        "/api/v1/fixtures": {
+            "post": {
+                "tags": [
+                    "Fixtures"
+                ],
+                "summary": "Lấy thông tin về trận đấu",
+                "description": "Endpoint này được sử dụng để lấy thông tin về các trận đấu của một giải đấu cụ thể trong một mùa giải nhất định, bao gồm cả các trận đấu đang diễn ra (live).",
+                "operationId": "getFixtures",
+                "requestBody": {
+                    "description": "Dữ liệu đầu vào",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "live": {
+                                        "description": "Chỉ định trạng thái trận đấu (live) hoặc không (all)",
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "description": "ID của trận đấu",
+                                        "type": "string"
+                                    },
+                                    "ids": {
+                                        "description": "Mảng các ID của trận đấu",
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "description": "Ngày của trận đấu. Định dạng chuỗi: 'YYYY-MM-DD'",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "team": {
+                                        "description": "Tên đội bóng tham gia trận đấu",
+                                        "type": "string"
+                                    },
+                                    "last": {
+                                        "description": "Số trận đấu trước",
+                                        "type": "integer"
+                                    },
+                                    "next": {
+                                        "description": "Số trận đấu sau",
+                                        "type": "integer"
+                                    },
+                                    "round": {
+                                        "description": "Vòng đấu",
+                                        "type": "integer"
+                                    },
+                                    "status": {
+                                        "description": "Trạng thái của trận đấu",
+                                        "type": "string"
+                                    },
+                                    "timezone": {
+                                        "description": "Múi giờ",
+                                        "type": "string"
+                                    },
+                                    "from": {
+                                        "description": "Ngày bắt đầu. Định dạng chuỗi: 'YYYY-MM-DD'",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "to": {
+                                        "description": "Ngày kết thúc. Định dạng chuỗi: 'YYYY-MM-DD'",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "venue": {
+                                        "description": "Sân vận động",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Dữ liệu trận đấu đã được truy vấn thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "response": {
+                                            "description": "Danh sách thông tin trận đấu",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        },
+                                        "results": {
+                                            "description": "Số lượng kết quả trận đấu trả về",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Lỗi nội bộ của máy chủ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/fixtures/rounds": {
+            "get": {
+                "tags": [
+                    "Fixtures"
+                ],
+                "summary": "Lấy thông tin về vòng đấu",
+                "description": "Endpoint này được sử dụng để lấy thông tin về vòng đấu của một giải đấu cụ thể trong một mùa giải nhất định.",
+                "operationId": "getRound",
+                "parameters": [
+                    {
+                        "name": "league",
+                        "in": "query",
+                        "description": "Mã của giải đấu",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "season",
+                        "in": "query",
+                        "description": "Năm mùa giải",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dữ liệu vòng đấu đã được truy vấn thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "response": {
+                                            "description": "Danh sách thông tin vòng đấu",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        },
+                                        "results": {
+                                            "description": "Số lượng kết quả vòng đấu trả về",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Lỗi nội bộ của máy chủ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/fixtures/head-to-head": {
+            "post": {
+                "tags": [
+                    "Fixtures"
+                ],
+                "summary": "Lấy thông tin đối đầu trực tiếp",
+                "description": "Endpoint này được sử dụng để lấy thông tin về các trận đấu đối đầu trực tiếp giữa hai đội bóng.",
+                "operationId": "getHeadToHead",
+                "requestBody": {
+                    "description": "Dữ liệu đầu vào",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "h2h": {
+                                        "description": "Thông tin đối đầu trực tiếp giữa hai đội bóng",
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "description": "Ngày của trận đấu. Định dạng chuỗi: 'YYYY-MM-DD'",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "last": {
+                                        "description": "Số trận đấu trước",
+                                        "type": "integer"
+                                    },
+                                    "next": {
+                                        "description": "Số trận đấu sau",
+                                        "type": "integer"
+                                    },
+                                    "venue": {
+                                        "description": "Sân vận động",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "Trạng thái của trận đấu",
+                                        "type": "string"
+                                    },
+                                    "timezone": {
+                                        "description": "Múi giờ",
+                                        "type": "string"
+                                    },
+                                    "from": {
+                                        "description": "Ngày bắt đầu. Định dạng chuỗi: 'YYYY-MM-DD'",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "to": {
+                                        "description": "Ngày kết thúc. Định dạng chuỗi: 'YYYY-MM-DD'",
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Dữ liệu đối đầu trực tiếp đã được truy vấn thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "fixtures": {
+                                            "description": "Danh sách thông tin trận đấu đối đầu trực tiếp",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        },
+                                        "count": {
+                                            "description": "Số lượng kết quả trận đấu trả về",
+                                            "type": "integer"
+                                        },
+                                        "errors": {
+                                            "description": "Danh sách lỗi",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Lỗi nội bộ của máy chủ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/fixtures/statistics": {
+            "post": {
+                "tags": [
+                    "Fixtures"
+                ],
+                "summary": "Lấy thông tin thống kê trận đấu",
+                "description": "Endpoint này được sử dụng để lấy thông tin thống kê cho một trận đấu cụ thể.",
+                "operationId": "getStatisticsFixtures",
+                "requestBody": {
+                    "description": "Dữ liệu đầu vào",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "fixture": {
+                                        "description": "ID của trận đấu",
+                                        "type": "string"
+                                    },
+                                    "team": {
+                                        "description": "ID của đội bóng",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "Loại thống kê",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Dữ liệu thống kê trận đấu đã được truy vấn thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "statistics": {
+                                            "description": "Danh sách thông tin thống kê trận đấu",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        },
+                                        "count": {
+                                            "description": "Số lượng kết quả thống kê trả về",
+                                            "type": "integer"
+                                        },
+                                        "errors": {
+                                            "description": "Danh sách lỗi",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Lỗi nội bộ của máy chủ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/fixtures/events": {
+            "post": {
+                "tags": [
+                    "Fixtures"
+                ],
+                "summary": "Lấy thông tin sự kiện trong trận đấu",
+                "description": "Endpoint này được sử dụng để lấy thông tin về các sự kiện diễn ra trong một trận đấu cụ thể.",
+                "operationId": "getEvents",
+                "requestBody": {
+                    "description": "Dữ liệu đầu vào",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "fixture": {
+                                        "description": "ID của trận đấu",
+                                        "type": "string"
+                                    },
+                                    "team": {
+                                        "description": "ID của đội bóng",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "Loại sự kiện",
+                                        "type": "string"
+                                    },
+                                    "player": {
+                                        "description": "ID của cầu thủ",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Dữ liệu sự kiện trong trận đấu đã được truy vấn thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "events": {
+                                            "description": "Danh sách thông tin sự kiện trong trận đấu",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        },
+                                        "count": {
+                                            "description": "Số lượng kết quả sự kiện trả về",
+                                            "type": "integer"
+                                        },
+                                        "errors": {
+                                            "description": "Danh sách lỗi",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Lỗi nội bộ của máy chủ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/fixtures/lineups": {
+            "post": {
+                "tags": [
+                    "Fixtures"
+                ],
+                "summary": "Lấy thông tin đội hình thi đấu",
+                "description": "Endpoint này được sử dụng để lấy thông tin về đội hình thi đấu trong một trận đấu cụ thể.",
+                "operationId": "getLineups",
+                "requestBody": {
+                    "description": "Dữ liệu đầu vào",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "fixture": {
+                                        "description": "ID của trận đấu",
+                                        "type": "string"
+                                    },
+                                    "team": {
+                                        "description": "ID của đội bóng",
+                                        "type": "string"
+                                    },
+                                    "player": {
+                                        "description": "ID của cầu thủ",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "Loại đội hình",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Dữ liệu đội hình thi đấu đã được truy vấn thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "lineups": {
+                                            "description": "Danh sách thông tin đội hình thi đấu",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        },
+                                        "count": {
+                                            "description": "Số lượng kết quả đội hình trả về",
+                                            "type": "integer"
+                                        },
+                                        "errors": {
+                                            "description": "Danh sách lỗi",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Lỗi nội bộ của máy chủ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/fixtures/players": {
+            "post": {
+                "tags": [
+                    "Fixtures"
+                ],
+                "summary": "Lấy thông tin cầu thủ",
+                "description": "Endpoint này được sử dụng để lấy thông tin về các cầu thủ tham gia trong một trận đấu cụ thể.",
+                "operationId": "getPlayers",
+                "requestBody": {
+                    "description": "Dữ liệu đầu vào",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "fixture": {
+                                        "description": "ID của trận đấu",
+                                        "type": "string"
+                                    },
+                                    "team": {
+                                        "description": "ID của đội bóng",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Dữ liệu cầu thủ đã được truy vấn thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "players": {
+                                            "description": "Danh sách thông tin cầu thủ",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        },
+                                        "count": {
+                                            "description": "Số lượng kết quả cầu thủ trả về",
+                                            "type": "integer"
+                                        },
+                                        "errors": {
+                                            "description": "Danh sách lỗi",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Lỗi nội bộ của máy chủ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/teams/information": {
             "get": {
                 "tags": [

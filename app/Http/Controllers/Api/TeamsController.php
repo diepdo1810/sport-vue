@@ -76,7 +76,8 @@ class TeamsController extends ApiController
             $data = $response->json();
             $result = [
                 'teams' => $data['response'],
-                'count' => $data['results']
+                'count' => $data['results'],
+                'errors' => $data['errors']
             ];
 
             return $this->buildResponseData($result, 'Seasons data retrieved successfully', 200);
@@ -137,7 +138,8 @@ class TeamsController extends ApiController
             $data = $response->json();
             $result = [
                 'statistics' => $data['response'],
-                'count' => $data['results']
+                'count' => $data['results'],
+                'errors' => $data['errors']
             ];
             return $this->buildResponseData($result, 'Statistics data retrieved successfully', 200);
         } catch (\Exception $e) {
@@ -195,7 +197,8 @@ class TeamsController extends ApiController
             $resp = $data['response'];
             $result = [
                 'seasons' => $resp[$resu - 1],
-                'count' => $resu
+                'count' => $resu,
+                'errors' => $data['errors']
             ];
             return $this->buildResponseData($result, 'Seasons data retrieved successfully', 200);
         } catch (\Exception $e) {
@@ -238,7 +241,8 @@ class TeamsController extends ApiController
             $key = array_search(ENGLAND_CODE, array_column($resp, 'code'));
             $result = [
                 'countries' => $resp[$key],
-                'count' => $data['results']
+                'count' => $data['results'],
+                'errors' => $data['errors']
             ];
             return $this->buildResponseData($result, 'Countries data retrieved successfully', 200);
         } catch (\Exception $e) {
