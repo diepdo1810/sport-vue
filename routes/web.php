@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// import routes api
+require __DIR__ . '/api.php';
+
 // phpinfo();
 Route::get('/phpinfo', function () {
     return phpinfo();
