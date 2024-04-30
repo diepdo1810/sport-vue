@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// phpinfo();
+Route::get('/phpinfo', function () {
+    return phpinfo();
+});
+
 Route::group(['prefix' => '/'], function () {
     Route::get('/', function () {
         return view('layouts.app');
