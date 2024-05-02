@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-12 footer-sport">
-                    <img src="assets/images/logo.png" alt="logo">
+                    <img src="https://res.cloudinary.com/dclj4svib/image/upload/v1714548958/sport-vue/logo_yb60no.png" alt="logo">
                     <p class="footer-description">
                         Creating a solution for your business can be a challenging task, but with the right approach, it can
                         lead to increased productivity, efficiency, and profitability.
