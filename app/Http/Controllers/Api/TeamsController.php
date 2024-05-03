@@ -12,8 +12,8 @@ class TeamsController extends ApiController
 {
     /**
      * @OA\Get(
-     *     path="/api/v1/teams/information",
-     *     operationId="getInformation",
+     *     path="/api/v1/teams",
+     *     operationId="getTeams",
      *     tags={"Teams"},
      *     summary="Lấy thông tin về các mùa giải",
      *     description="Truy vấn thông tin về các mùa giải của giải đấu bóng đá",
@@ -65,7 +65,7 @@ class TeamsController extends ApiController
      *     )
      * )
      */
-    public function information(): JsonResponse
+    public function index()
     {
         try {
             $response = Http::withHeaders($this->setHeaders())
@@ -85,6 +85,27 @@ class TeamsController extends ApiController
             return $this->buildResponseData($e->getMessage(), 'Internal Server Error', 500);
         }
     }
+
+//    public function information(): JsonResponse
+//    {
+//        try {
+//            $response = Http::withHeaders($this->setHeaders())
+//                ->get($this->apiUrl . '/teams', [
+//                    'league' => ENGLAND_PREMIER_LEAGUE,
+//                    'season' => SEASON
+//                ]);
+//            $data = $response->json();
+//            $result = [
+//                'teams' => $data['response'],
+//                'count' => $data['results'],
+//                'errors' => $data['errors']
+//            ];
+//
+//            return $this->buildResponseData($result, 'Seasons data retrieved successfully', 200);
+//        } catch (\Exception $e) {
+//            return $this->buildResponseData($e->getMessage(), 'Internal Server Error', 500);
+//        }
+//    }
 
     /**
      * @OA\Post(

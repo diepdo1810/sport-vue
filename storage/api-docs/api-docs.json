@@ -641,14 +641,14 @@
                 }
             }
         },
-        "/api/v1/teams/information": {
+        "/api/v1/teams": {
             "get": {
                 "tags": [
                     "Teams"
                 ],
                 "summary": "Lấy thông tin về các mùa giải",
                 "description": "Truy vấn thông tin về các mùa giải của giải đấu bóng đá",
-                "operationId": "getInformation",
+                "operationId": "getTeams",
                 "responses": {
                     "200": {
                         "description": "Dữ liệu mùa giải đã được lấy thành công",

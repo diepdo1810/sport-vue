@@ -1,14 +1,17 @@
 <template>
     <the-header></the-header>
     <base-banner></base-banner>
+    <base-side-bar></base-side-bar>
     <the-footer></the-footer>
 </template>
 
 <script>
 import BaseBanner from "./components/UI/BaseBanner.vue";
+import BaseSideBar from "./components/UI/BaseSideBar.vue";
 export default {
     name: "App",
     components: {
+        BaseSideBar,
         BaseBanner,
     },
     data() {

@@ -27,7 +27,8 @@ Route::group(['prefix' => 'v1'], function () {
 
     // teams
     Route::group(['prefix' => 'teams'], function () {
-        Route::get('/information', [TeamsController::class, 'information'])->name('teams.information');
+        Route::get('/', [TeamsController::class, 'index'])->name('teams.index');
+//        Route::get('/information', [TeamsController::class, 'information'])->name('teams.information');
         Route::post('/statistics', [TeamsController::class, 'statistics'])->name('teams.statistics');
         Route::post('/seasons', [TeamsController::class, 'seasons'])->name('teams.seasons');
         Route::get('/countries', [TeamsController::class, 'countries'])->name('teams.countries');
