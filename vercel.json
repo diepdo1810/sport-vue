@@ -1,9 +1,10 @@
 {
     "version": 2,
     "framework": null,
-    "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.6.1" }
-    },
+    "builds": [
+        { "src": "/api/index.php", "use": "vercel-php@0.5.5" },
+        { "src": "/public/**", "use": "@vercel/static" }
+    ],
     "routes": [
         {
             "src": "/(.*)",
@@ -34,6 +35,8 @@
 
         "CACHE_DRIVER": "array",
         "SESSION_DRIVER": "cookie",
-        "LOG_CHANNEL": "stderr"
+        "LOG_CHANNEL": "stderr",
+        "SSR_TEMP_PATH": "/tmp/ssr",
+        "NODE_PATH": "node"
     }
 }
