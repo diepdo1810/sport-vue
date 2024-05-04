@@ -1,107 +1,76 @@
 <template>
     <div class="sidebar-section">
         <h2>Top leagues</h2>
-        <div class="sidebar-item">
+        <div class="sidebar-item" v-for="league in leagues" :key="league.id">
             <img
-                src="http://127.0.0.1:8080/assets/images/icon/world_cup.png"
-                alt="icon"
+                :src="league.flag"
+                alt="country flag"
                 class="me-2"
             />
-            <a href="/league-detail">World Cup</a>
-        </div>
-        <div class="sidebar-item">
+
+            <a href="/league-detail">
+                {{ league.name }}
+            </a>
             <img
-                src="http://127.0.0.1:8080/assets/images/icon/uffa.png"
-                alt="icon"
-                class="me-2"
-            />
-            <a href="/league-detail">UEFA Nations League</a>
-        </div>
-        <div class="sidebar-item">
-            <img
-                src="http://127.0.0.1:8080/assets/images/icon/c1.png"
-                alt="icon"
-                class="me-2"
-            />
-            <a href="/league-detail">Champions League</a>
-        </div>
-        <div class="sidebar-item">
-            <img
-                src="http://127.0.0.1:8080/assets/images/icon/pl.png"
-                alt="icon"
-                class="me-2"
-            />
-            <a href="/league-detail">Premier League</a>
-        </div>
-        <div class="sidebar-item">
-            <img
-                src="http://127.0.0.1:8080/assets/images/icon/c2.png"
-                alt="icon"
-                class="me-2"
-            />
-            <a href="/league-detail">Europa League</a>
-        </div>
-        <div class="sidebar-item">
-            <img
-                src="http://127.0.0.1:8080/assets/images/icon/laliga.png"
-                alt="icon"
-                class="me-2"
-            />
-            <a href="/league-detail">La Liga</a>
-        </div>
-        <div class="sidebar-item">
-            <img
-                src="http://127.0.0.1:8080/assets/images/icon/bundes.png"
-                alt="icon"
-                class="me-2"
-            />
-            <a href="/league-detail">Bundesliga</a>
-        </div>
-        <div class="sidebar-item">
-            <img
-                src="http://127.0.0.1:8080/assets/images/icon/ligue_1.png"
-                alt="icon"
-                class="me-2"
-            />
-            <a href="/league-detail">Ligue 1</a>
-        </div>
-        <div class="sidebar-item">
-            <img
-                src="http://127.0.0.1:8080/assets/images/icon/seria.png"
-                alt="icon"
-                class="me-2"
-            />
-            <a href="/league-detail">Serie A</a>
-        </div>
-        <div class="sidebar-item">
-            <img
-                src="http://127.0.0.1:8080/assets/images/icon/fa_cup.png"
-                alt="icon"
-                class="me-2"
-            />
-            <a href="/league-detail">FA Cup</a>
-        </div>
-        <div class="sidebar-item">
-            <img
-                src="http://127.0.0.1:8080/assets/images/icon/superliga.png"
-                alt="icon"
-                class="me-2"
-            />
-            <a href="/league-detail">Superliga</a>
-        </div>
-        <div class="sidebar-item">
-            <img
-                src="http://127.0.0.1:8080/assets/images/icon/ligue_1.png"
-                alt="icon"
-                class="me-2"
-            />
-            <a href="/league-detail">League One</a>
+                :src="league.logo"
+                alt="league logo"
+                class="me-2 show-logo">
         </div>
     </div>
 </template>
 
+<style scoped>
+.sidebar-section {
+    overflow-y: scroll;
+    margin-bottom: 20px;
+    height: calc(100vh - 100px);
+}
+.show-logo {
+    display: none;
+}
+.sidebar-item:hover .show-logo {
+    display: block;
+    margin-left: 10px;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
 <script>
 export default {
     name: "TopLeagues",
+    data() {
+        return {
+            leagues: [],
+            showLogo: false,
+        };
+    },
+    mounted() {
+        // if local storage is empty, fetch leagues
+        const leagues = localStorage.getItem("leagues");
+        if (!leagues) {
+            this.fetchLeagues();
+        } else {
+            this.leagues = JSON.parse(leagues);
+        }
+    },
+    methods: {
+        fetchLeagues() {
+            axios.get("/api/v1/leagues").then((response) => {
+                this.leagues = response.data.data.leagues;
+                // save cache
+                localStorage.setItem("leagues", JSON.stringify(this.leagues));
+            }).catch((error) => {
+                console.log(error);
+            });
+        },
+        // hover effect show league logo
+        showLeagueLogo(league) {
+            this.showLogo = true;
+            this.league = league;
+        },
+    }
 };
 </script>
+
+

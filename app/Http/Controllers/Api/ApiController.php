@@ -21,7 +21,7 @@ class ApiController extends Controller
         $this->apiKey = API_KEY;
     }
 
-    /*
+    /**
      * Build a response with a success status
      *
      * @param $data

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\LeaguesController;
 use App\Http\Controllers\Api\TeamsController;
 use App\Http\Controllers\Api\TimezoneController;
 use App\Http\Controllers\Api\FixturesController;
@@ -32,6 +33,11 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/statistics', [TeamsController::class, 'statistics'])->name('teams.statistics');
         Route::post('/seasons', [TeamsController::class, 'seasons'])->name('teams.seasons');
         Route::get('/countries', [TeamsController::class, 'countries'])->name('teams.countries');
+    });
+
+    // Leagues
+    Route::group(['prefix' => 'leagues'], function () {
+        Route::get('/', [LeaguesController::class, 'index'])->name('leagues.index');
     });
 
     // fixtures

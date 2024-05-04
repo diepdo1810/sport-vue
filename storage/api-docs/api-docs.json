@@ -641,6 +641,90 @@
                 }
             }
         },
+        "/api/v1/leagues": {
+            "get": {
+                "tags": [
+                    "Leagues"
+                ],
+                "summary": "Lấy thông tin về các giải đấu",
+                "description": "Truy vấn thông tin về các giải đấu bóng đá",
+                "operationId": "getLeagues",
+                "responses": {
+                    "200": {
+                        "description": "Dữ liệu giải đấu đã được lấy thành công",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "description": "Dữ liệu giải đấu",
+                                            "properties": {
+                                                "teams": {
+                                                    "description": "Danh sách các đội bóng trong giải đấu",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "count": {
+                                                    "description": "Số lượng giải đấu",
+                                                    "type": "integer"
+                                                },
+                                                "errors": {
+                                                    "description": "Danh sách các lỗi nếu có",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "message": {
+                                            "description": "Thông điệp trả về",
+                                            "type": "string",
+                                            "example": "Leagues fetched successfully"
+                                        },
+                                        "status": {
+                                            "description": "Mã trạng thái HTTP",
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Lỗi nội bộ máy chủ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "description": "Dữ liệu rỗng",
+                                            "type": "null"
+                                        },
+                                        "message": {
+                                            "description": "Thông điệp lỗi",
+                                            "type": "string",
+                                            "example": "Internal Server Error"
+                                        },
+                                        "status": {
+                                            "description": "Mã trạng thái HTTP",
+                                            "type": "integer",
+                                            "example": 500
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/teams": {
             "get": {
                 "tags": [
