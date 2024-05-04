@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar-section">
+    <div class="sidebar-section" v-if="teams">
         <h2>Teams</h2>
         <div class="sidebar-item" v-for="team in teams" :key="team.id">
             <img

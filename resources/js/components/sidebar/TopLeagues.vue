@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar-section">
+    <div class="sidebar-section" v-if="leagues">
         <h2>Top leagues</h2>
         <div class="sidebar-item" v-for="league in leagues" :key="league.id">
             <img
