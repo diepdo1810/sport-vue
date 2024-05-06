@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\League;
 use Illuminate\Support\Facades\Http;
 use OpenApi\Annotations as OA;
 
@@ -82,6 +83,10 @@ class LeaguesController extends ApiController
     public function index()
     {
         try {
+            $leagues = League::where('response', '!=', null)->first();
+            if ($leagues) {
+                return $this->buildResponseData($leagues->response, 200, 'Leagues fetched successfully');
+            }
             $response = Http::withHeaders($this->setHeaders())
                 ->get($this->apiUrl . '/leagues', [
                     'season' => SEASON
@@ -103,6 +108,7 @@ class LeaguesController extends ApiController
                 'leagues' => $rs,
                 'errors' => $data['errors']
             ];
+            League::query()->insert(['response' => json_encode($result)]);
             return $this->buildResponseData($result, $response->status(), 'Leagues fetched successfully');
         } catch (\Exception $e) {
             return $this->buildResponseData($e->getMessage(), 500, 'An error occurred while fetching leagues');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Team;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -68,6 +69,10 @@ class TeamsController extends ApiController
     public function index()
     {
         try {
+            $teams = Team::where('response', '!=', null)->first();
+            if ($teams) {
+                return $this->buildResponseData($teams->response, 'Seasons data retrieved successfully', 200);
+            }
             $response = Http::withHeaders($this->setHeaders())
                 ->get($this->apiUrl . '/teams', [
                     'league' => ENGLAND_PREMIER_LEAGUE,
@@ -79,7 +84,7 @@ class TeamsController extends ApiController
                 'count' => $data['results'],
                 'errors' => $data['errors']
             ];
-
+            Team::query()->insert(['response' => json_encode($result)]);
             return $this->buildResponseData($result, 'Seasons data retrieved successfully', 200);
         } catch (\Exception $e) {
             return $this->buildResponseData($e->getMessage(), 'Internal Server Error', 500);
