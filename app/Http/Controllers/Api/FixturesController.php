@@ -11,31 +11,12 @@ use OpenApi\Annotations as OA;
 class FixturesController extends ApiController
 {
     /**
-     * @OA\Post(
+     * @OA\Get(
      *     path="/api/v1/fixtures",
      *     operationId="getFixtures",
      *     tags={"Fixtures"},
      *     summary="Lấy thông tin về trận đấu",
      *     description="Endpoint này được sử dụng để lấy thông tin về các trận đấu của một giải đấu cụ thể trong một mùa giải nhất định, bao gồm cả các trận đấu đang diễn ra (live).",
-     *     @OA\RequestBody(
-     *         required=false,
-     *         description="Dữ liệu đầu vào",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="live", type="string", description="Chỉ định trạng thái trận đấu (live) hoặc không (all)"),
-     *             @OA\Property(property="id", type="string", description="ID của trận đấu"),
-     *             @OA\Property(property="ids", type="string", description="Mảng các ID của trận đấu"),
-     *             @OA\Property(property="date", type="string", format="date", description="Ngày của trận đấu. Định dạng chuỗi: 'YYYY-MM-DD'"),
-     *             @OA\Property(property="team", type="string", description="Tên đội bóng tham gia trận đấu"),
-     *             @OA\Property(property="last", type="integer", description="Số trận đấu trước"),
-     *             @OA\Property(property="next", type="integer", description="Số trận đấu sau"),
-     *             @OA\Property(property="round", type="integer", description="Vòng đấu"),
-     *             @OA\Property(property="status", type="string", description="Trạng thái của trận đấu"),
-     *             @OA\Property(property="timezone", type="string", description="Múi giờ"),
-     *             @OA\Property(property="from", type="string", format="date", description="Ngày bắt đầu. Định dạng chuỗi: 'YYYY-MM-DD'"),
-     *             @OA\Property(property="to", type="string", format="date", description="Ngày kết thúc. Định dạng chuỗi: 'YYYY-MM-DD'"),
-     *             @OA\Property(property="venue", type="string", description="Sân vận động")
-     *         )
-     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Dữ liệu trận đấu đã được truy vấn thành công",
@@ -53,63 +34,45 @@ class FixturesController extends ApiController
      *     )
      * )
      */
-    public function index(Request $request)
+    public function index()
     {
         try {
             $params = [
                 'league' => ENGLAND_PREMIER_LEAGUE,
                 'season' => SEASON,
             ];
-            if ($request->has('live')) {
-                $params['live'] = $request->live;
-            }
-            if ($request->has('id')) {
-                $params['id'] = $request->id;
-            }
-            if ($request->has('ids')) {
-                $params['ids'] = $request->ids;
-            }
-            if ($request->has('date')) {
-                // stringYYYY-MM-DD
-                $params['date'] = Carbon::parse($request->date)->format('Y-m-d');
-            }
-            if ($request->has('team')) {
-                $params['team'] = $request->team;
-            }
-            if ($request->has('last')) {
-                $params['last'] = $request->last;
-            }
-            if ($request->has('next')) {
-                $params['next'] = $request->next;
-            }
-            if ($request->has('round')) {
-                $params['round'] = $request->round;
-            }
-            if ($request->has('status')) {
-                $params['status'] = $request->status;
-            }
-            if ($request->has('timezone')) {
-                $params['timezone'] = $request->timezone;
-            }
-            if ($request->has('from')) {
-                // stringYYYY-MM-DD
-                $params['from'] = Carbon::parse($request->from)->format('Y-m-d');
-            }
-            if ($request->has('to')) {
-                // stringYYYY-MM-DD
-                $params['to'] = Carbon::parse($request->to)->format('Y-m-d');
-            }
-            if ($request->has('venue')) {
-                $params['venue'] = $request->venue;
-            }
+
             $response = Http::withHeaders($this->setHeaders())
                 ->get($this->apiUrl . '/fixtures', $params);
             $data = $response->json();
+            // get venue, status, league, teams
+            $fixtures = [];
+            foreach ($data['response'] as $rs) {
+                // format date EXAMPLE: SUNDAY, JANUARY 17, 2021 - 12:30
+                // in fixture, date is 2020-02-06T14:00:00+00:00
+                $dateFixture = Carbon::parse($rs['fixture']['date'])->format('l, F j, Y - H:i');
+                $fixtures[] = [
+                    'id' => $rs['fixture']['id'],
+                    'league' => $rs['league']['name'],
+                    'date' => $dateFixture,
+                    'status' => $rs['fixture']['status'],
+                    'venue' => $rs['fixture']['venue']['name'],
+                    'teams' => [
+                        'home' => $rs['teams']['home']['name'],
+                        'logo_home' => $rs['teams']['home']['logo'],
+                        'away' => $rs['teams']['away']['name'],
+                        'logo_away' => $rs['teams']['away']['logo']
+                    ]
+                ];
+            }
+
             $result = [
-                'fixtures' => $data['response'],
+                'fixtures' => $fixtures,
                 'count' => $data['results'],
                 'errors' => $data['errors']
             ];
+
+
             return $this->buildResponseData($result, 'Fixtures data retrieved successfully', 200);
         } catch (\Exception $e) {
             return $this->buildResponseData($e->getMessage(), 'Internal Server Error', 500);

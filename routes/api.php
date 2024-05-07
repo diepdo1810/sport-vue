@@ -42,7 +42,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     // fixtures
     Route::group(['prefix' => 'fixtures'], function () {
-        Route::post('/', [FixturesController::class, 'index'])->name('fixtures.index');
+        Route::get('/', [FixturesController::class, 'index'])->name('fixtures.index');
         Route::get('/rounds', [FixturesController::class, 'rounds'])->name('fixtures.rounds');
         Route::post('/head-to-head', [FixturesController::class, 'headToHead'])->name('fixtures.head-to-head');
         Route::post('/statistics', [FixturesController::class, 'statistics'])->name('fixtures.statistics');

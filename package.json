@@ -19,6 +19,7 @@
         "@vercel/postgres": "^0.8.0",
         "bootstrap": "^5.3.3",
         "vue": "^3.4.21",
-        "vue-router": "^4.3.2"
+        "vue-router": "^4.3.2",
+        "vue3-carousel": "^0.3.3"
     }
 }

@@ -6,81 +6,13 @@
     },
     "paths": {
         "/api/v1/fixtures": {
-            "post": {
+            "get": {
                 "tags": [
                     "Fixtures"
                 ],
                 "summary": "Lấy thông tin về trận đấu",
                 "description": "Endpoint này được sử dụng để lấy thông tin về các trận đấu của một giải đấu cụ thể trong một mùa giải nhất định, bao gồm cả các trận đấu đang diễn ra (live).",
                 "operationId": "getFixtures",
-                "requestBody": {
-                    "description": "Dữ liệu đầu vào",
-                    "required": false,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "live": {
-                                        "description": "Chỉ định trạng thái trận đấu (live) hoặc không (all)",
-                                        "type": "string"
-                                    },
-                                    "id": {
-                                        "description": "ID của trận đấu",
-                                        "type": "string"
-                                    },
-                                    "ids": {
-                                        "description": "Mảng các ID của trận đấu",
-                                        "type": "string"
-                                    },
-                                    "date": {
-                                        "description": "Ngày của trận đấu. Định dạng chuỗi: 'YYYY-MM-DD'",
-                                        "type": "string",
-                                        "format": "date"
-                                    },
-                                    "team": {
-                                        "description": "Tên đội bóng tham gia trận đấu",
-                                        "type": "string"
-                                    },
-                                    "last": {
-                                        "description": "Số trận đấu trước",
-                                        "type": "integer"
-                                    },
-                                    "next": {
-                                        "description": "Số trận đấu sau",
-                                        "type": "integer"
-                                    },
-                                    "round": {
-                                        "description": "Vòng đấu",
-                                        "type": "integer"
-                                    },
-                                    "status": {
-                                        "description": "Trạng thái của trận đấu",
-                                        "type": "string"
-                                    },
-                                    "timezone": {
-                                        "description": "Múi giờ",
-                                        "type": "string"
-                                    },
-                                    "from": {
-                                        "description": "Ngày bắt đầu. Định dạng chuỗi: 'YYYY-MM-DD'",
-                                        "type": "string",
-                                        "format": "date"
-                                    },
-                                    "to": {
-                                        "description": "Ngày kết thúc. Định dạng chuỗi: 'YYYY-MM-DD'",
-                                        "type": "string",
-                                        "format": "date"
-                                    },
-                                    "venue": {
-                                        "description": "Sân vận động",
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "Dữ liệu trận đấu đã được truy vấn thành công",
