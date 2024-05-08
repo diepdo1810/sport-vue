@@ -6,6 +6,11 @@ use App\Models\League;
 use Illuminate\Support\Facades\Http;
 use OpenApi\Annotations as OA;
 
+use Chiaser\Controller\LeagueIndexHandler;
+
+use Chiaser\Driver\LeagueEloquentRepository;
+use Chiaser\UseCase\LeagueService as LeagueService;
+
 class LeaguesController extends ApiController
 {
     /**
@@ -83,9 +88,9 @@ class LeaguesController extends ApiController
     public function index()
     {
         try {
-            $leagues = League::where('response', '!=', null)->first();
+            $leagues = (new LeagueIndexHandler(new LeagueService(new LeagueEloquentRepository())))->handle(request());
             if ($leagues) {
-                return $this->buildResponseData($leagues->response, 200, 'Leagues fetched successfully');
+                return $this->buildResponseData($leagues['data'][0]['response'], 200, 'Leagues fetched successfully');
             }
             $response = Http::withHeaders($this->setHeaders())
                 ->get($this->apiUrl . '/leagues', [
