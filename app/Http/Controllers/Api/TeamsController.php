@@ -69,13 +69,13 @@ class TeamsController extends ApiController
     public function index()
     {
         try {
-            $teams = Team::where('response', '!=', null)->first();
-            if ($teams) {
-                return $this->buildResponseData($teams->response, 'Seasons data retrieved successfully', 200);
-            }
+            // $teams = Team::where('response', '!=', null)->first();
+            // if ($teams) {
+            //     return $this->buildResponseData($teams->response, 'Seasons data retrieved successfully', 200);
+            // }
             $response = Http::withHeaders($this->setHeaders())
                 ->get($this->apiUrl . '/teams', [
-                    'league' => ENGLAND_PREMIER_LEAGUE,
+                    'league' => VLEAGUE1,
                     'season' => SEASON
                 ]);
             $data = $response->json();
@@ -91,26 +91,26 @@ class TeamsController extends ApiController
         }
     }
 
-//    public function information(): JsonResponse
-//    {
-//        try {
-//            $response = Http::withHeaders($this->setHeaders())
-//                ->get($this->apiUrl . '/teams', [
-//                    'league' => ENGLAND_PREMIER_LEAGUE,
-//                    'season' => SEASON
-//                ]);
-//            $data = $response->json();
-//            $result = [
-//                'teams' => $data['response'],
-//                'count' => $data['results'],
-//                'errors' => $data['errors']
-//            ];
-//
-//            return $this->buildResponseData($result, 'Seasons data retrieved successfully', 200);
-//        } catch (\Exception $e) {
-//            return $this->buildResponseData($e->getMessage(), 'Internal Server Error', 500);
-//        }
-//    }
+    //    public function information(): JsonResponse
+    //    {
+    //        try {
+    //            $response = Http::withHeaders($this->setHeaders())
+    //                ->get($this->apiUrl . '/teams', [
+    //                    'league' => ENGLAND_PREMIER_LEAGUE,
+    //                    'season' => SEASON
+    //                ]);
+    //            $data = $response->json();
+    //            $result = [
+    //                'teams' => $data['response'],
+    //                'count' => $data['results'],
+    //                'errors' => $data['errors']
+    //            ];
+    //
+    //            return $this->buildResponseData($result, 'Seasons data retrieved successfully', 200);
+    //        } catch (\Exception $e) {
+    //            return $this->buildResponseData($e->getMessage(), 'Internal Server Error', 500);
+    //        }
+    //    }
 
     /**
      * @OA\Post(
@@ -155,7 +155,7 @@ class TeamsController extends ApiController
             // string format: 'YYYY-MM-DD'
             $params['date'] = Carbon::parse($request->date)->format('Y-m-d');
         }
-        $params['league'] = ENGLAND_PREMIER_LEAGUE;
+        $params['league'] = VLEAGUE1;
         $params['season'] = SEASON;
 
         try {

@@ -38,7 +38,7 @@ class FixturesController extends ApiController
     {
         try {
             $params = [
-                'league' => ENGLAND_PREMIER_LEAGUE,
+                'league' => VLEAGUE1,
                 'season' => SEASON,
             ];
 

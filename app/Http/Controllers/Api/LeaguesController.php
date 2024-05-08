@@ -89,7 +89,7 @@ class LeaguesController extends ApiController
     {
         try {
             $leagues = (new LeagueIndexHandler(new LeagueService(new LeagueEloquentRepository())))->handle(request());
-            if ($leagues) {
+            if ($leagues['data']) {
                 return $this->buildResponseData($leagues['data'][0]['response'], 200, 'Leagues fetched successfully');
             }
             $response = Http::withHeaders($this->setHeaders())
