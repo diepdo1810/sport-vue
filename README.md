@@ -27,3 +27,7 @@ Entity: This directory contains application Entities, which are objects that rep
 
 UseCase: This folder contains the application's Use Cases, which contain the main business logic of the application. Each Use Case typically performs a specific function of the application and does not depend on any specific component outside that Use Case.
 ```
+## RUN TEST
+```shell
+php -S localhost:8005 api/index.php
+```
