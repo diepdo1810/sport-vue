@@ -62,7 +62,11 @@ class FixturesController extends ApiController
                         'logo_home' => $rs['teams']['home']['logo'],
                         'away' => $rs['teams']['away']['name'],
                         'logo_away' => $rs['teams']['away']['logo']
-                    ]
+                    ],
+                    'goals' => [
+                        'home' => $rs['goals']['home'],
+                        'away' => $rs['goals']['away']
+                    ],
                 ];
             }
 

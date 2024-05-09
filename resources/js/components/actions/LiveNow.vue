@@ -8,13 +8,17 @@
                             <div class="fs-14 mb-2">
                                 {{ fixture.league }}
                             </div>
-                            <div class="live-team">
+                            <div class="live-team row">
                                 <div class="fs-14 mb-2">
-                                    <img :src="fixture.teams.logo_home" alt="icon" class="me-2" width="16">
+                                    <span class="col-4">
+                                        <img :src="fixture.teams.logo_home" alt="icon" class="me-2" width="16">
+                                    </span>
                                     {{ fixture.teams.home }}
                                 </div>
                                 <div class="fs-14">
-                                    <img :src="fixture.teams.logo_away" alt="icon" class="me-2" width="16">
+                                    <span>
+                                        <img :src="fixture.teams.logo_away" alt="icon" class="me-2" width="16">
+                                    </span>
                                     {{ fixture.teams.away }}
                                 </div>
                             </div>
@@ -56,14 +60,20 @@ export default defineComponent({
         }
     },
     mounted() {
-        this.getFixtures()
+        // get fixtures
+        if (localStorage.getItem('fixtures')) {
+            this.fixtures = JSON.parse(localStorage.getItem('fixtures'))
+        } else {
+            this.getFixtures()
+        }
     },
     methods: {
         getFixtures() {
             axios.get('/api/v1/fixtures')
                 .then(response => {
                     this.fixtures = response.data.data.fixtures
-                    console.log(this.fixtures)
+                    // save to local storage
+                    localStorage.setItem('fixtures', JSON.stringify(this.fixtures))
                 })
                 .catch(error => {
                     console.log(error)

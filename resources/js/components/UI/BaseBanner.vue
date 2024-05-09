@@ -1,7 +1,7 @@
 <template>
     <div
         id="carouselExampleInterval"
-        class="carousel slide banner"
+        class="carousel slide banner mb-3"
         data-bs-ride="carousel"
     >
         <div class="carousel-inner">
@@ -41,7 +41,7 @@ export default {
     name: "BaseBanner",
     data() {
         return {
-            image: "https://res.cloudinary.com/dclj4svib/image/upload/v1714548546/sport-vue/home-background_r5tepj.png",
+            image: "https://res.cloudinary.com/dclj4svib/image/upload/v1715237415/sport-vue/Logo-V1.png",
         };
     },
 };

@@ -69,10 +69,10 @@ class TeamsController extends ApiController
     public function index()
     {
         try {
-            // $teams = Team::where('response', '!=', null)->first();
-            // if ($teams) {
-            //     return $this->buildResponseData($teams->response, 'Seasons data retrieved successfully', 200);
-            // }
+//             $teams = Team::where('response', '!=', null)->oderBy('id', 'desc')->first();
+//             if ($teams) {
+//                 return $this->buildResponseData($teams->response, 'Seasons data retrieved successfully', 200);
+//             }
             $response = Http::withHeaders($this->setHeaders())
                 ->get($this->apiUrl . '/teams', [
                     'league' => VLEAGUE1,

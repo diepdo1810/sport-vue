@@ -17,13 +17,11 @@ export default {
         };
     },
     mounted() {
-        this.fetchTeams();
-    },
-    computed: {
-        // get teams from cache
-        teams() {
-            return JSON.parse(localStorage.getItem("teams")) || [];
-        },
+        if (localStorage.getItem("teams")) {
+            this.teams = JSON.parse(localStorage.getItem("teams"));
+        } else {
+            this.fetchTeams();
+        }
     },
     methods: {
         fetchTeams() {
