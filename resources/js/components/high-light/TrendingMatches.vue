@@ -14,17 +14,9 @@
                 class="d-flex match-header list-matches w-100"
                 href="/live-active"
             >
-                <div class="d-none xl-d-block">
-                    <div class="td-fix-width d-flex position-relative gap-4">
-                        <div class="d-flex times-matches flex-wrap">
-                            <div class="date-time fs-16">{{ fixture.date }}<div>
-                            <div class="league fs-14">{{ fixture.league }}</div>
-                        </div>
-                    </div>
-                </div>
-                    </div>
+                <div>
                     <div class="d-flex align-items-center td-info">
-                        <div class="d-block xl-d-none text-center">
+                        <div class="text-center">
                         <div class="date-time fs-12 lg-fs-14">
                             {{ fixture.date }}
                         </div>
@@ -69,7 +61,7 @@
                     </div>
                     </div>
                 </div>
-                <div class="d-none xl-d-block">
+                <div>
                     <div
                         class="button-view td-fix-width d-flex justify-content-end"
                     >
@@ -106,12 +98,15 @@ export default {
         fetchFixtures() {
             // get api from backend
             axios
-                .get('/api/v1/fixtures')
+                .get('/api/v1/fixtures', {
+                    params: {
+                        status: 'FT',
+                    },
+                })
                 .then((response) => {
                     this.fixtures = response.data.data.fixtures
                     // save cache
                     localStorage.setItem('fixtures', JSON.stringify(this.fixtures))
-                    console.log(this.fixtures)
                 })
                 .catch((error) => {
                     console.log(error)

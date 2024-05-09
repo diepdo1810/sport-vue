@@ -41,6 +41,11 @@ class FixturesController extends ApiController
                 'league' => VLEAGUE1,
                 'season' => SEASON,
             ];
+            $paramsToCheck = [
+                'id', 'ids', 'live', 'date', 'league', 'season', 'team', 'last', 'next',
+                'round', 'venue', 'status', 'timezone', 'from', 'to', 'search'
+            ];
+            $params = array_merge($params, getRequestParams($paramsToCheck));
 
             $response = Http::withHeaders($this->setHeaders())
                 ->get($this->apiUrl . '/fixtures', $params);
@@ -73,9 +78,9 @@ class FixturesController extends ApiController
             $result = [
                 'fixtures' => $fixtures,
                 'count' => $data['results'],
-                'errors' => $data['errors']
+                'errors' => $data['errors'],
+                'paging' => $data['paging'],
             ];
-
 
             return $this->buildResponseData($result, 'Fixtures data retrieved successfully', 200);
         } catch (\Exception $e) {
